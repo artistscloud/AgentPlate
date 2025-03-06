@@ -46,3 +46,20 @@ POST /api/login - Login to get JWT
 2. **Install Dependencies**:
    ```bash
    npm install
+
+
+config/supabase.js: Sets up your Supabase connection with both public and service role clients. Keeps your keys safe and centralized.
+routes/: Your API endpoints, split by resource:
+agents.js: Create, read, update, delete (CRUD) for agents.
+tools.js: CRUD for tools that agents use.
+workflows.js: CRUD for workflows tying agents and tasks together.
+profiles.js: User profile management (e.g., display names).
+index.js: Ties all the routes together under /api.
+models/: Handles all your Supabase database calls:
+Agent.js, Tool.js, Workflow.js, Profile.js: Each has functions like getAll() or create() to talk to their respective tables.
+middleware/auth.js: Locks down your routes with JWT verification, so only authorized users (admins or regular users) get through.
+utils/helpers.js: Stashes reusable bits like error handlers or data formatters.
+.env: Holds your secrets—Supabase URL, keys, JWT secret, etc. Keep this out of Git!
+package.json: Lists dependencies (express, @supabase/supabase-js, jsonwebtoken, etc.) and scripts like start and dev.
+index.js: The heart of the app—sets up Express, hooks up middleware and routes, and starts the server.
+README.md: Your cheat sheet for getting it running.
